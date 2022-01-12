@@ -26,8 +26,8 @@ Which sometimes gives me `gunzip: (stdin): trailing garbage ignored` messages.
 > 
 > Right now it's a tmp file: 
 > 
-> * https://github.com/nextstrain/ncov-ingest/blob/master/bin/notify-on-location-hierarchy-addition
-> * https://github.com/nextstrain/ncov-ingest/blob/ac98385fd086dfb977b8ffe77ae7f000f6f398be/Snakefile#L388
+> * https://github.com/nextstrain/ncov-ingest/blob/04ca33cbed1f96320035b9f7ebcc6abf4fa25a72/bin/notify-on-additional-info-change#L29
+> * https://github.com/nextstrain/ncov-ingest/blob/ac98385fd086dfb977b8ffe77ae7f000f6f398be/Snakefile#L386
 
 ## Run parse additional info
 
