@@ -28,6 +28,8 @@ Which sometimes gives me `gunzip: (stdin): trailing garbage ignored` messages.
 > 
 > * https://github.com/nextstrain/ncov-ingest/blob/04ca33cbed1f96320035b9f7ebcc6abf4fa25a72/bin/notify-on-additional-info-change#L29
 > * https://github.com/nextstrain/ncov-ingest/blob/ac98385fd086dfb977b8ffe77ae7f000f6f398be/Snakefile#L386
+> 
+> There should be a way to concatinate the last few days into one file, instead of scrolling in slack to download each one/process each one individually (marked with green box/check)
 
 ## Run parse additional info
 
