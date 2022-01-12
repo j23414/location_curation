@@ -4,12 +4,10 @@
 
 From the `#ncov-gisaid-updates` slack channel, download:
 
-* `additional-info-changes.txt`
-* `flagged-annotations.txt`
+* `additional-info-changes.txt` -> parse
+* `flagged-annotations.txt` (actually rest of these might not be called by either parse or curate)
 * `flagged-metadata-additions.txt`
-* `location-hierarchy-additions.tsv.txt`
-
-Also concatinate same files from `#ncov-genbank-updates`?
+* `location-hierarchy-additions.tsv.txt` 
 
 Place the above files in `ncov/scripts/curate_metadata/inputs_new_sequences`.
 
@@ -23,6 +21,13 @@ nextstrain remote download s3://nextstrain-data/files/ncov/open/metadata.tsv.gz 
 ```
 
 Which sometimes gives me `gunzip: (stdin): trailing garbage ignored` messages.
+
+> Maybe pull all files from a nextstrain remote download s3:XXXXXX` command?
+> 
+> Right now it's a tmp file: 
+> 
+> * https://github.com/nextstrain/ncov-ingest/blob/master/bin/notify-on-location-hierarchy-addition
+> * https://github.com/nextstrain/ncov-ingest/blob/ac98385fd086dfb977b8ffe77ae7f000f6f398be/Snakefile#L388
 
 ## Run parse additional info
 
