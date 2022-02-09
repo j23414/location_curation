@@ -1,5 +1,16 @@
 # Processing new locations
 
+```
+mkdir today
+cd today
+git clone https://github.com/nextstrain/ncov-ingest.git
+git clone https://github.com/nextstrain/ncov.git
+cd ncov
+git branch mergeloc_jen
+git checkout mergeloc_jen
+# ...
+```
+
 ## For new locations, download from slack:
 
 From the `#ncov-gisaid-updates` slack channel, download:
