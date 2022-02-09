@@ -4,16 +4,13 @@
 
 From the `#ncov-gisaid-updates` slack channel, download:
 
-* `additional-info-changes.txt` -> parse
-* `flagged-annotations.txt` (actually rest of these might not be called by either parse or curate)
-* `flagged-metadata-additions.txt`
-* `location-hierarchy-additions.tsv.txt` 
+* `additional-info-changes.txt`
 
 Place the above files in `ncov/scripts/curate_metadata/inputs_new_sequences`.
 
 ## Pull s3 datasets
 
-From within `ncov`. 
+From within `ncov`.
 
 ```
 nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
