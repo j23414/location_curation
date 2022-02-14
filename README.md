@@ -439,10 +439,15 @@ git checkout mergeloc_jen
 cp ../ncov/scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv source-data/.
 git  commit -m "add: annotation updates from Feb 8 2022" source-data/gisaid_annotations.tsv
 cd ../ncov
-# Archive last run
-mv /scripts/curate_metadata/output_curate_metadata/ /scripts/curate_metadata/2022-02-08_output_curate_metadata
+
+# Archive last run (maybe simplify pathing later)
+mkdir -p scripts/curate_metadata/2022-02-14
+mv scripts/curate_metadata/output_curate_metadata scripts/curate_metadata/2022-02-14/.
+mv scripts/curate_metadata/inputs_new_sequences scripts/curate_metadata/2022-02-14/.
+# maybe capture log messages (tee?)
+
 # Get ready for next run 
-mkdir -p /scripts/curate_metadata/output_curate_metadata/ 
+mkdir -p scripts/curate_metadata/output_curate_metadata/ 
 ```
 
 
