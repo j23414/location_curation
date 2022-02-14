@@ -1,15 +1,22 @@
 # Processing new locations
 
 ```
+# Setup Repos
 mkdir today
 cd today
 git clone https://github.com/nextstrain/ncov-ingest.git
 git clone https://github.com/nextstrain/ncov.git
-cd ncov
-#git branch mergeloc_jen  #<= actully will only change ncov-ingest
-#git checkout mergeloc_jen
+cd ncov-ingest
+git branch mergeloc_jen
+git checkout mergeloc_jen
+cd ../ncov
+
+# Pull existing s3 datasets
+nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
+nextstrain remote download s3://nextstrain-data/files/ncov/open/metadata.tsv.gz /dev/stdout | gunzip > data/metadata_genbank.tsv
+
+# Pull data from slack
 mkdir -p scripts/curate_metadata/inputs_new_sequences
-# ...
 ```
 
 ## For new locations, download from slack:
@@ -20,6 +27,7 @@ From the `#ncov-gisaid-updates` slack channel, download:
 
 Place the above files in `ncov/scripts/curate_metadata/inputs_new_sequences`.
 
+<!--
 ## Pull s3 datasets
 
 From within `ncov`.
@@ -39,6 +47,8 @@ Which sometimes gives me `gunzip: (stdin): trailing garbage ignored` messages.
 > * https://github.com/nextstrain/ncov-ingest/blob/ac98385fd086dfb977b8ffe77ae7f000f6f398be/Snakefile#L386
 > 
 > There should be a way to concatinate the last few days into one file, instead of scrolling in slack to download each one/process each one individually (marked with green box/check)
+
+-->
 
 ## Run parse additional info
 
@@ -427,7 +437,12 @@ cd ../ncov-ingest
 git branch mergeloc_jen
 git checkout mergeloc_jen
 cp ../ncov/scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv source-data/.
-git  commit -m "add: annotation updates from Feb 8 2022" source-data/gisaid_annotations.tsv 
+git  commit -m "add: annotation updates from Feb 8 2022" source-data/gisaid_annotations.tsv
+cd ../ncov
+# Archive last run
+mv /scripts/curate_metadata/output_curate_metadata/ /scripts/curate_metadata/2022-02-08_output_curate_metadata
+# Get ready for next run 
+mkdir -p /scripts/curate_metadata/output_curate_metadata/ 
 ```
 
 
