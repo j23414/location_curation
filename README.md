@@ -8,6 +8,7 @@ git clone https://github.com/nextstrain/ncov.git
 cd ncov
 git branch mergeloc_jen
 git checkout mergeloc_jen
+mkdir -p scripts/curate_metadata/inputs_new_sequences
 # ...
 ```
 
