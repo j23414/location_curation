@@ -7,9 +7,11 @@ cd today
 git clone https://github.com/nextstrain/ncov-ingest.git
 git clone https://github.com/nextstrain/ncov.git
 cd ncov-ingest
-git branch mergeloc_jen
+git branch mergeloc_jen       # For gisaid/genbank_annotations.txt
 git checkout mergeloc_jen
 cd ../ncov
+git branch mergeloc_jen       # For defaults/colors lat_long.txt
+git checkout mergeloc_jen
 
 # Pull existing s3 datasets
 nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
@@ -27,45 +29,16 @@ From the `#ncov-gisaid-updates` slack channel, download:
 
 Place the above files in `ncov/scripts/curate_metadata/inputs_new_sequences`.
 
-<!--
-## Pull s3 datasets
-
-From within `ncov`.
-
-```
-nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
-nextstrain remote download s3://nextstrain-data/files/ncov/open/metadata.tsv.gz /dev/stdout | gunzip > data/metadata_genbank.tsv
-```
-
-Which sometimes gives me `gunzip: (stdin): trailing garbage ignored` messages.
-
-> Maybe pull all files from a nextstrain remote download s3:XXXXXX` command?
-> 
-> Right now it's a tmp file: 
-> 
-> * https://github.com/nextstrain/ncov-ingest/blob/04ca33cbed1f96320035b9f7ebcc6abf4fa25a72/bin/notify-on-additional-info-change#L29
-> * https://github.com/nextstrain/ncov-ingest/blob/ac98385fd086dfb977b8ffe77ae7f000f6f398be/Snakefile#L386
-> 
-> There should be a way to concatinate the last few days into one file, instead of scrolling in slack to download each one/process each one individually (marked with green box/check)
-
--->
-
 ## Run parse additional info
 
 From the `ncov` folder, run:
 
 ```
 python scripts/curate_metadata/parse_additional_info.py --auto 
-```
 
-Output will be in `ncov/scripts/curate_metadata/outputs_new_sequences`
-
-* `additional_info_annotation.tsv` # <= where to put this
-
-```
-ls -l scripts/curate_metadata/outputs_new_sequences
--rw-r--r--  1 jenchang  staff    59K Jan 12 12:18 omicron_additional_info.txt
--rw-r--r--  1 jenchang  staff    51K Jan 12 12:18 additional_info_annotations.tsv
+ls -l scripts/curate_metadata/outputs_new_sequences  # View output files
+#> -rw-r--r--  1 jenchang  staff    59K Jan 12 12:18 omicron_additional_info.txt
+#> -rw-r--r--  1 jenchang  staff    51K Jan 12 12:18 additional_info_annotations.tsv
 ```
 
 ## Run curate metadata
@@ -76,7 +49,7 @@ python scripts/curate_metadata/curate_metadata.py
 
 Outputs
 
-<details><summary>Full output</summary>
+<details><summary>Example full output</summary>
 
 ```
 
@@ -437,17 +410,19 @@ cd ../ncov-ingest
 git branch mergeloc_jen
 git checkout mergeloc_jen
 cp ../ncov/scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv source-data/.
+cp ../ncov/scripts/curate_metadata/output_curate_metadata/genbank_annotations.tsv source-data/.
 git  commit -m "add: annotation updates from Feb 8 2022" source-data/gisaid_annotations.tsv
 cd ../ncov
 
-# Archive last run (maybe simplify pathing later)
-mkdir -p scripts/curate_metadata/2022-02-14
-mv scripts/curate_metadata/output_curate_metadata scripts/curate_metadata/2022-02-14/.
-mv scripts/curate_metadata/inputs_new_sequences scripts/curate_metadata/2022-02-14/.
+# Archive last run, in separate directory in case ncov has an update
+ARCHIVE_DIR="../archive/2022-02-08"
+mkdir -p ${ARCHIVE_DIR}
+mv scripts/curate_metadata/output_curate_metadata ${ARCHIVE_DIR}/.
+mv scripts/curate_metadata/inputs_new_sequences ${ARCHIVE_DIR}/.
 # maybe capture log messages (tee?)
 
 # Get ready for next run 
-mkdir -p scripts/curate_metadata/output_curate_metadata/ 
+mkdir -p scripts/curate_metadata/inputs_new_sequences
 ```
 
 
@@ -459,3 +434,26 @@ mkdir -p scripts/curate_metadata/output_curate_metadata/
 bin/check-gisaid-geoRules --geo-location-rules source-data/gisaid_geoLocationRules.tsv --output-file gisaid_geoLocationRules.tsv
 ```
 
+<!-- OLD NOTES
+
+## Pull s3 datasets
+
+From within `ncov`.
+
+```
+nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
+nextstrain remote download s3://nextstrain-data/files/ncov/open/metadata.tsv.gz /dev/stdout | gunzip > data/metadata_genbank.tsv
+```
+
+Which sometimes gives me `gunzip: (stdin): trailing garbage ignored` messages.
+
+> Maybe pull all files from a nextstrain remote download s3:XXXXXX` command?
+> 
+> Right now it's a tmp file: 
+> 
+> * https://github.com/nextstrain/ncov-ingest/blob/04ca33cbed1f96320035b9f7ebcc6abf4fa25a72/bin/notify-on-additional-info-change#L29
+> * https://github.com/nextstrain/ncov-ingest/blob/ac98385fd086dfb977b8ffe77ae7f000f6f398be/Snakefile#L386
+> 
+> There should be a way to concatinate the last few days into one file, instead of scrolling in slack to download each one/process each one individually (marked with green box/check)
+
+-->
