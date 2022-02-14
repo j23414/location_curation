@@ -6,8 +6,8 @@ cd today
 git clone https://github.com/nextstrain/ncov-ingest.git
 git clone https://github.com/nextstrain/ncov.git
 cd ncov
-git branch mergeloc_jen
-git checkout mergeloc_jen
+#git branch mergeloc_jen  #<= actully will only change ncov-ingest
+#git checkout mergeloc_jen
 mkdir -p scripts/curate_metadata/inputs_new_sequences
 # ...
 ```
@@ -45,7 +45,7 @@ Which sometimes gives me `gunzip: (stdin): trailing garbage ignored` messages.
 From the `ncov` folder, run:
 
 ```
-python scripts/curate_metadata/parse_additional_info.py --auto
+python scripts/curate_metadata/parse_additional_info.py --auto 
 ```
 
 Output will be in `ncov/scripts/curate_metadata/outputs_new_sequences`
@@ -53,6 +53,7 @@ Output will be in `ncov/scripts/curate_metadata/outputs_new_sequences`
 * `additional_info_annotation.tsv` # <= where to put this
 
 ```
+ls -l scripts/curate_metadata/outputs_new_sequences
 -rw-r--r--  1 jenchang  staff    59K Jan 12 12:18 omicron_additional_info.txt
 -rw-r--r--  1 jenchang  staff    51K Jan 12 12:18 additional_info_annotations.tsv
 ```
@@ -60,7 +61,7 @@ Output will be in `ncov/scripts/curate_metadata/outputs_new_sequences`
 ## Run curate metadata
 
 ```
-python scripts/curate_metadata/curate_metadata.py
+python scripts/curate_metadata/curate_metadata.py 
 ```
 
 Outputs
@@ -409,6 +410,24 @@ total 174520
 -rw-r--r--  1 jenchang  staff   3.1M Jan 12 12:05 gisaid_geoLocationRules.tsv
 -rw-r--r--  1 jenchang  staff   830K Jan 12 12:05 location_hierarchy.tsv
 -rw-r--r--  1 jenchang  staff   769B Jan 12 12:05 us-state-codes.tsv
+```
+
+**2022-02-14**
+
+```
+Writing updated annotation files to scripts/curate_metadata/output_curate_metadata/...
+Attention: gisaid_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
+No changes to genbank_annotations.tsv.
+```
+
+Merge files
+
+```
+cd ../ncov-ingest
+git branch mergeloc_jen
+git checkout mergeloc_jen
+cp ../ncov/scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv source-data/.
+git  commit -m "add: annotation updates from Feb 8 2022" source-data/gisaid_annotations.tsv 
 ```
 
 
