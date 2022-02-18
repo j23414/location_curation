@@ -1,0 +1,8 @@
+Europe,Austria,Upper Austria / Voecklabruck / Voecklamarkt,		Europe,Austria,Upper Austria,Voecklamarkt
+Europe,Austria,Upper Austria / Voecklabruck / Frankenburg Am Hausruck,	Europe,Austria,Upper Austria,Frankenburg Am Hausruck
+Europe,Austria,Upper Austria / Voecklabruck / Voecklabruck,	Europe,Austria,Upper Austria,Voecklabruck
+Europe,Austria,Upper Austria / Voecklabruck / Schoerfling Am Attersee,	Europe,Austria,Upper Austria,Schoerfling Am Attersee
+Europe,Austria,Upper Austria / Voecklabruck / St. Georgen Im Attergau,	Europe,Austria,Upper Austria,St. Georgen Im Attergau
+Europe,Austria,Upper Austria / Voecklabruck / Rutzenmoos,	Europe,Austria,Upper Austria,Rutzenmoos
+Europe,Austria,Upper Austria / Voecklabruck / Frankenmarkt,	Europe,Austria,Upper Austria,Frankenmarkt
+Europe,Austria,Upper Austria / Gmunden / Laakirchen,	Europe,Austria,Upper Austria,Laakirchen
