@@ -7,11 +7,11 @@ cd today
 git clone https://github.com/nextstrain/ncov-ingest.git
 git clone https://github.com/nextstrain/ncov.git
 cd ncov-ingest
-git branch mergeloc_jen       # For gisaid/genbank_annotations.txt
-git checkout mergeloc_jen
+git branch mergeloc_jen2       # For gisaid/genbank_annotations.txt
+git checkout mergeloc_jen2
 cd ../ncov
-git branch mergeloc_jen       # For defaults/colors lat_long.txt
-git checkout mergeloc_jen
+git branch mergeloc_jen2       # For defaults/colors lat_long.txt
+git checkout mergeloc_jen2
 
 # Pull existing s3 datasets
 nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
@@ -42,7 +42,7 @@ ls -l scripts/curate_metadata/outputs_new_sequences  # View output files
 #> -rw-r--r--  1 jenchang  staff    51K Jan 12 12:18 additional_info_annotations.tsv # added to top of files
 ```
 
-Add to gisaid_annotations, will be support
+Add to top of gisaid_annotations
 
 ```
 cat scripts/curate_metadata/outputs_new_sequences/additional_info_annotations.tsv > temp.txt
@@ -61,8 +61,19 @@ In top, at division region, may need to add manual annotation rules. Quit and re
 
 ```
 # Fix Delimiters errors (Austrian case)
-vscode scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt 
+vscode scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
+```
 
+For example:
+
+```
+Europe,Austria,Upper Austria / Voecklabruck / Voecklamarkt,             Europe,Austria,Upper Austria,Voecklamarkt
+Europe,Austria,Upper Austria / Voecklabruck / Frankenburg Am Hausruck,  Europe,Austria,Upper Austria,Frankenburg Am Hausruck
+```
+
+Notice the middle delimiter ",\t"
+
+```
 # Fix other geolocation errors (change spelling, or resolution, or duplicates, missing county, Porto Rico needs to change to USA)
 # Save to check.txt (double check later)
 
@@ -70,27 +81,25 @@ less defaults/color_ordering.tsv
 # search country, division (a instead of n/y)
 emacs scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt
 ```
-
-
-With key messages being:
+Example
 
 ```
-grep "Remember to replace" full_output.txt
-
-New lat_longs written out to scripts/curate_metadata/output_curate_metadata/lat_longs.tsv. Remember to replace the old file in defaults/.
-Attention: color_ordering.tsv was altered! Remember to replace the old file in defaults/.
-Attention: exclude.txt was altered! Remember to replace the old file in defaults/.
-Attention: color_ordering.tsv was altered! Remember to replace the old file in defaults/.
+Current place for missing division:	Kosice - Okolie, Slovakia
+Geopy suggestion: District of Košice - okolie, Region of Košice, Slovakia
+Is this the right place (a - alter division level) [y/n/a]? a
+Type correct division to produce corrective rule: Kosice
+Europe/Slovakia/Kosice - Okolie/	Europe/Slovakia/Kosice/Kosice - Okolie
 ```
 
-* `scripts/curate_metadata/output_curate_metadata/lat_longs.tsv`
-* `color_ordering.tsv`
-* `exclude.txt` 
+Copy last line to `geoLocationRules.txt`.
+
+Then skip all check, and rerun to apply new rules:
 
 ```
-Attention: gisaid_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
-Attention: genbank_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
+python scripts/curate_metadata/curate_metadata.py 
 ```
+
+After it's done:
 
 ```
 ls -ltr scripts/curate_metadata/output_curate_metadata/
@@ -108,63 +117,9 @@ cp scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv ../ncov
 cp scripts/curate_metadata/output_curate_metadata/genbank_annotations.tsv ../ncov-ingest/source-data/.
 ```
 
-<!--
-Compare with `ncov-ingest`
+## geoLocationRules
 
-```
- ls -ltr ../ncov-ingest/source-data/
-total 174520
--rw-r--r--  1 jenchang  staff    58M Jan 12 12:05 accessions.tsv
--rw-r--r--  1 jenchang  staff   124K Jan 12 12:05 genbank_annotations.tsv
--rw-r--r--  1 jenchang  staff    23M Jan 12 12:05 gisaid_annotations.tsv
--rw-r--r--  1 jenchang  staff   3.1M Jan 12 12:05 gisaid_geoLocationRules.tsv
--rw-r--r--  1 jenchang  staff   830K Jan 12 12:05 location_hierarchy.tsv
--rw-r--r--  1 jenchang  staff   769B Jan 12 12:05 us-state-codes.tsv
-```
--->
-
-## Geolocations
-
-**2022-02-14**
-
-```
-Writing updated annotation files to scripts/curate_metadata/output_curate_metadata/...
-Attention: gisaid_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
-No changes to genbank_annotations.tsv.
-```
-
-Merge files
-
-```
-cd ../ncov-ingest
-git branch mergeloc_jen
-git checkout mergeloc_jen
-cp ../ncov/scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv source-data/.
-cp ../ncov/scripts/curate_metadata/output_curate_metadata/genbank_annotations.tsv source-data/.
-git  commit -m "add: annotation updates from Feb 8 2022" source-data/gisaid_annotations.tsv
-cd ../ncov
-
-# Archive last run, in separate directory in case ncov has an update
-ARCHIVE_DIR="../archive/2022-02-08"
-mkdir -p ${ARCHIVE_DIR}
-mv scripts/curate_metadata/output_curate_metadata ${ARCHIVE_DIR}/.
-mv scripts/curate_metadata/inputs_new_sequences ${ARCHIVE_DIR}/.
-# maybe capture log messages (tee?)
-
-# Get ready for next run 
-mkdir -p scripts/curate_metadata/inputs_new_sequences
-```
-
-```
-cp scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv ../ncov-ingest/source-data/.
-cp scripts/curate_metadata/output_curate_metadata/genbank_annotations.tsv ../ncov-ingest/source-data/.
-cp scripts/curate_metadata/output_curate_metadata/lat_longs.tsv defaults/lat_longs.tsv 
-```
-
-
-## After
-
-Add to the bottom of the files.
+Add to rules to bottom of the files.
 
 ```
 echo "" >> ../ncov-ingest/source-data/gisaid_geoLocationRules.tsv 
@@ -189,7 +144,42 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named 'utils.transform'
 ```
 
+### Only on MY computer
+
+Since I tried to install `pango` whose `utils` is masking the local one. Create a temporary workaround till I can fix my environment.
+
+```
+cd ncov-ingest
+cp -r lib/utils lib/utils2
+cat bin/check-gisaid-geoRules |\
+  sed 's/utils./utils2./g' > \
+  bin/jc_check-gisaid-geoRules
+  
+cat lib/utils2/lib/utils2/transform.py |\
+  sed 's/utils./utils2./g' > \
+  temp.txt
+mv temp.txt lib/utils2/lib/utils2/transform.py
+```
+
+Then run:
+
+```
+python3 bin/jc_check-gisaid-geoRules \
+  --geo-location-rules source-data/gisaid_geoLocationRules.tsv \
+ --output-file gisaid_geoLocationRules.tsv
+ 
+mv gisaid_geoLocationRules.tsv source-data
+
+git diff
+#>	modified:   source-data/genbank_annotations.tsv
+#>	modified:   source-data/gisaid_annotations.tsv
+```
+
 rerun curate
+
+```
+python scripts/curate_metadata/curate_metadata.py 
+```
 
 * Check duplicates
 * Check rules
@@ -230,4 +220,85 @@ Which sometimes gives me `gunzip: (stdin): trailing garbage ignored` messages.
 > 
 > There should be a way to concatinate the last few days into one file, instead of scrolling in slack to download each one/process each one individually (marked with green box/check)
 
+
+
+With key messages being:
+
+```
+grep "Remember to replace" full_output.txt
+
+New lat_longs written out to scripts/curate_metadata/output_curate_metadata/lat_longs.tsv. Remember to replace the old file in defaults/.
+Attention: color_ordering.tsv was altered! Remember to replace the old file in defaults/.
+Attention: exclude.txt was altered! Remember to replace the old file in defaults/.
+Attention: color_ordering.tsv was altered! Remember to replace the old file in defaults/.
+
+Writing updated annotation files to scripts/curate_metadata/output_curate_metadata/...
+Attention: gisaid_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
+Attention: genbank_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
+```
+
+* `scripts/curate_metadata/output_curate_metadata/lat_longs.tsv`
+* `color_ordering.tsv`
+* `exclude.txt` 
+
+```
+Attention: gisaid_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
+Attention: genbank_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
+```
+
+```
+-->
+
+<!--
+Compare with `ncov-ingest`
+
+```
+ ls -ltr ../ncov-ingest/source-data/
+total 174520
+-rw-r--r--  1 jenchang  staff    58M Jan 12 12:05 accessions.tsv
+-rw-r--r--  1 jenchang  staff   124K Jan 12 12:05 genbank_annotations.tsv
+-rw-r--r--  1 jenchang  staff    23M Jan 12 12:05 gisaid_annotations.tsv
+-rw-r--r--  1 jenchang  staff   3.1M Jan 12 12:05 gisaid_geoLocationRules.tsv
+-rw-r--r--  1 jenchang  staff   830K Jan 12 12:05 location_hierarchy.tsv
+-rw-r--r--  1 jenchang  staff   769B Jan 12 12:05 us-state-codes.tsv
+```
+-->
+
+<!--
+
+**2022-02-14**
+
+```
+Writing updated annotation files to scripts/curate_metadata/output_curate_metadata/...
+Attention: gisaid_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
+No changes to genbank_annotations.tsv.
+```
+
+Merge files
+
+```
+cd ../ncov-ingest
+git branch mergeloc_jen
+git checkout mergeloc_jen
+cp ../ncov/scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv source-data/.
+cp ../ncov/scripts/curate_metadata/output_curate_metadata/genbank_annotations.tsv source-data/.
+git  commit -m "add: annotation updates from Feb 8 2022" source-data/gisaid_annotations.tsv
+cd ../ncov
+
+# Archive last run, in separate directory in case ncov has an update
+ARCHIVE_DIR="../archive/2022-02-08"
+mkdir -p ${ARCHIVE_DIR}
+mv scripts/curate_metadata/output_curate_metadata ${ARCHIVE_DIR}/.
+mv scripts/curate_metadata/inputs_new_sequences ${ARCHIVE_DIR}/.
+# maybe capture log messages (tee?)
+
+# Get ready for next run 
+mkdir -p scripts/curate_metadata/inputs_new_sequences
+```
+
+```
+cp scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv ../ncov-ingest/source-data/.
+cp scripts/curate_metadata/output_curate_metadata/genbank_annotations.tsv ../ncov-ingest/source-data/.
+cp scripts/curate_metadata/output_curate_metadata/lat_longs.tsv defaults/lat_longs.tsv 
+```
 -->
