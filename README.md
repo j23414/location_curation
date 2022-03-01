@@ -1,17 +1,22 @@
 # Processing new locations
 
 ```
+NEW_RUN = ingest_Feb28
+
 # Setup Repos
-mkdir today
-cd today
+[[ -d Ingest_Locations ]] || mkdir Ingest_Locations
+cd Ingest_Locations
+
+git clone https://github.com/j23414/merge_loc.git  # For manual annotation, but remove later
+
 git clone https://github.com/nextstrain/ncov-ingest.git
 git clone https://github.com/nextstrain/ncov.git
 cd ncov-ingest
-git branch mergeloc_jen2       # For gisaid/genbank_annotations.txt
-git checkout mergeloc_jen2
+git branch ${NEW_RUN}      # For gisaid/genbank_annotations.txt
+git checkout ${NEW_RUN}
 cd ../ncov
-git branch mergeloc_jen2       # For defaults/colors lat_long.txt
-git checkout mergeloc_jen2
+git branch ${NEW_RUN}       # For defaults/colors lat_long.txt
+git checkout ${NEW_RUN}
 
 # Pull existing s3 datasets
 nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
@@ -29,6 +34,8 @@ From the `#ncov-gisaid-updates` slack channel, download:
 * (download all or in batches of 10) or rename 10> with a 9 prefix
 
 Place the above files in `ncov/scripts/curate_metadata/inputs_new_sequences`.
+
+Tag with Greenbox emoji to indicate it's been downloaded. Will replace with Greencheckmark emoji to indicate it's been merged.
 
 ## Run parse additional info
 
@@ -48,12 +55,14 @@ Add to top of gisaid_annotations
 cat scripts/curate_metadata/outputs_new_sequences/additional_info_annotations.tsv > temp.txt
 echo "" >> temp.txt
 cat ../ncov-ingest/source-data/gisaid_annotations.tsv >> temp.txt
-mv temp.txt ../ncov-ingest/source-data/gisaid_annotations.tsv
+cat temp.txt | grep "^$" > a.txt # Remove empty lines
+mv a.txt ../ncov-ingest/source-data/gisaid_annotations.tsv
 ```
 
 ## Run curate metadata
 
 ```
+cp ../merge_loc/manualAnnotationRules.txt scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
 python scripts/curate_metadata/curate_metadata.py 
 ```
 
