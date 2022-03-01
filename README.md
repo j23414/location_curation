@@ -1,7 +1,7 @@
 # Processing new locations
 
 ```
-NEW_RUN = ingest_Feb28
+NEW_RUN=mergeloc_Feb28
 
 # Setup Repos
 [[ -d Ingest_Locations ]] || mkdir Ingest_Locations
