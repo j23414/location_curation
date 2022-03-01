@@ -1,0 +1,7 @@
+Europe/Slovakia/Kosice - Okolie/	Europe/Slovakia/Kosice/Kosice - Okolie
+Africa/Tunisia/Mannouba/*	       Africa/Tunisia/Manouba/*
+Africa/Tunisia/Kairouen/*	Africa/Tunisia/Kairouan/*
+Asia/Vietnam/Tayninh/*		Asia/Vietnam/Tay Ninh/*
+Africa/Guinea/Nzerekore/*	Africa/Guinea/Nzerekore Region/*
+Europe/Belarus/Mogilev/*	Europe/Belarus/Mogilev Region/*
+Europe/Belarus/Grodno/*	Europe/Belarus/Grodno Region/*
