@@ -86,7 +86,10 @@ Notice the middle delimiter ",\t"
 # Fix other geolocation errors (change spelling, or resolution, or duplicates, missing county, Porto Rico needs to change to USA)
 # Save to check.txt (double check later)
 
-less defaults/color_ordering.tsv 
+
+grep -i "Unknown location name" defaults/color_ordering.tsv 
+less defaults/color_ordering.tsv  # Search for country, might be different spelling
+
 # search country, division (a instead of n/y)
 emacs scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt
 ```
