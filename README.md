@@ -167,10 +167,15 @@ cat bin/check-gisaid-geoRules |\
   sed 's/utils./utils2./g' > \
   bin/jc_check-gisaid-geoRules
   
-cat lib/utils2/lib/utils2/transform.py |\
+cat lib/utils2/transforms.py |\
   sed 's/utils./utils2./g' > \
   temp.txt
-mv temp.txt lib/utils2/lib/utils2/transform.py
+mv temp.txt lib/utils2/transforms.py
+
+cat lib/utils2/transformpipeline/transforms.py |\
+  sed 's/utils./utils2./g' > \
+  temp.txt
+mv temp.txt lib/utils2/transformpipeline/transforms.py
 ```
 
 Then run:
@@ -209,108 +214,28 @@ Asia/Bangladesh/Jhalokati/	Asia/Bangladesh/Khulna/Jhalokati
 
 Go back to "curate" rerun to check rules again.
 
-
-<!-- OLD NOTES
-
-## Pull s3 datasets
-
-From within `ncov`.
+## Commit
 
 ```
-nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
-nextstrain remote download s3://nextstrain-data/files/ncov/open/metadata.tsv.gz /dev/stdout | gunzip > data/metadata_genbank.tsv
-```
-
-Which sometimes gives me `gunzip: (stdin): trailing garbage ignored` messages.
-
-> Maybe pull all files from a nextstrain remote download s3:XXXXXX` command?
-> 
-> Right now it's a tmp file: 
-> 
-> * https://github.com/nextstrain/ncov-ingest/blob/04ca33cbed1f96320035b9f7ebcc6abf4fa25a72/bin/notify-on-additional-info-change#L29
-> * https://github.com/nextstrain/ncov-ingest/blob/ac98385fd086dfb977b8ffe77ae7f000f6f398be/Snakefile#L386
-> 
-> There should be a way to concatinate the last few days into one file, instead of scrolling in slack to download each one/process each one individually (marked with green box/check)
-
-
-
-With key messages being:
-
-```
-grep "Remember to replace" full_output.txt
-
-New lat_longs written out to scripts/curate_metadata/output_curate_metadata/lat_longs.tsv. Remember to replace the old file in defaults/.
-Attention: color_ordering.tsv was altered! Remember to replace the old file in defaults/.
-Attention: exclude.txt was altered! Remember to replace the old file in defaults/.
-Attention: color_ordering.tsv was altered! Remember to replace the old file in defaults/.
-
-Writing updated annotation files to scripts/curate_metadata/output_curate_metadata/...
-Attention: gisaid_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
-Attention: genbank_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
-```
-
-* `scripts/curate_metadata/output_curate_metadata/lat_longs.tsv`
-* `color_ordering.tsv`
-* `exclude.txt` 
-
-```
-Attention: gisaid_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
-Attention: genbank_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
-```
-
-```
--->
-
-<!--
-Compare with `ncov-ingest`
-
-```
- ls -ltr ../ncov-ingest/source-data/
-total 174520
--rw-r--r--  1 jenchang  staff    58M Jan 12 12:05 accessions.tsv
--rw-r--r--  1 jenchang  staff   124K Jan 12 12:05 genbank_annotations.tsv
--rw-r--r--  1 jenchang  staff    23M Jan 12 12:05 gisaid_annotations.tsv
--rw-r--r--  1 jenchang  staff   3.1M Jan 12 12:05 gisaid_geoLocationRules.tsv
--rw-r--r--  1 jenchang  staff   830K Jan 12 12:05 location_hierarchy.tsv
--rw-r--r--  1 jenchang  staff   769B Jan 12 12:05 us-state-codes.tsv
-```
--->
-
-<!--
-
-**2022-02-14**
-
-```
-Writing updated annotation files to scripts/curate_metadata/output_curate_metadata/...
-Attention: gisaid_annotations.tsv was altered! Remember to replace the old file in ../ncov-ingest/source-data/.
-No changes to genbank_annotations.tsv.
-```
-
-Merge files
-
-```
-cd ../ncov-ingest
-git branch mergeloc_jen
-git checkout mergeloc_jen
-cp ../ncov/scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv source-data/.
-cp ../ncov/scripts/curate_metadata/output_curate_metadata/genbank_annotations.tsv source-data/.
-git  commit -m "add: annotation updates from Feb 8 2022" source-data/gisaid_annotations.tsv
+cd ncov-ingest
+git commit -m "add: annotation updates up to 2022 Feb 28" source-data/*
+git push origin ${NEW_RUN}
 cd ../ncov
-
-# Archive last run, in separate directory in case ncov has an update
-ARCHIVE_DIR="../archive/2022-02-08"
-mkdir -p ${ARCHIVE_DIR}
-mv scripts/curate_metadata/output_curate_metadata ${ARCHIVE_DIR}/.
-mv scripts/curate_metadata/inputs_new_sequences ${ARCHIVE_DIR}/.
-# maybe capture log messages (tee?)
-
-# Get ready for next run 
-mkdir -p scripts/curate_metadata/inputs_new_sequences
+git commit -m "add: annotation updates up to 2022 Feb 28" defaults/*
+git push origin ${NEW_RUN}
 ```
 
+## PR
+
+
 ```
-cp scripts/curate_metadata/output_curate_metadata/gisaid_annotations.tsv ../ncov-ingest/source-data/.
-cp scripts/curate_metadata/output_curate_metadata/genbank_annotations.tsv ../ncov-ingest/source-data/.
-cp scripts/curate_metadata/output_curate_metadata/lat_longs.tsv defaults/lat_longs.tsv 
+PR: add: annotation updates from 2022-02-17 to 2022-02-28
+
+Description of proposed changes:
+Update annotations up to Feb 28th. Let me know if I missed anything.
+
+
+Related Issues:
+Related to https://github.com/nextstrain/ncov-ingest/pull/288
 ```
--->
+
