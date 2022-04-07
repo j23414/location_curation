@@ -1,7 +1,7 @@
 # Processing new locations
 
 ```
-NEW_RUN=mergeloc_Feb28
+NEW_RUN=mergeloc_Apr07
 
 # Setup Repos
 [[ -d Ingest_Locations ]] || mkdir Ingest_Locations
@@ -55,7 +55,8 @@ Add to top of gisaid_annotations
 cat scripts/curate_metadata/outputs_new_sequences/additional_info_annotations.tsv > temp.txt
 echo "" >> temp.txt
 cat ../ncov-ingest/source-data/gisaid_annotations.tsv >> temp.txt
-cat temp.txt | grep "^$" > a.txt # Remove empty lines
+# Remove empty lines
+cat temp.txt | grep -v "^$" > a.txt
 mv a.txt ../ncov-ingest/source-data/gisaid_annotations.tsv
 ```
 
