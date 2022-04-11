@@ -11,5 +11,18 @@ Africa/Kenya/Muranga County/	Africa/Kenya/Murang'a County/Muranga
 Africa/Kenya/Kuria West/	Africa/Kenya/Migori/Kuria West
 Africa/Botswana/Greater Phikwe/	Africa/Botswana/Central District BW/Greater Phikwe
 Africa/Morocco/Guelmim/	Africa/Morocco/Guelmim Province/Guelmim
-
+Europe/Belgium/St-Jans-Molenbeek/*	Europe/Belgium/St Jans Molenbeek/*
+Europe/Serbia/Beograad/*	Europe/Serbia/Beograd/*
+Europe/Greece/Western Macedonia Region/*	Europe/Greece/Western Macedonia/*
+Asia/Vietnam/Vinhlong/*	Asia/Vietnam/Vinh Long/*
+Asia/Vietnam/Longan/*	Asia/Vietnam/Long An/*
+Asia/China/Shenzhen/	Asia/China/Guangdong/Shenzhen
+Asia/Pakistan/Peshawar/	Asia/Pakistan/Khyber Pakhtunkhwa/Peshawar
+Africa/Botswana/Serowe/*	Africa/Botswana/Central District BW/*
+Africa/Botswana/Malotwane/	Africa/Botswana/Katleng/Malotwane
+North America/Panama/Las Tablas/	North America/Panama/Los Santos/Las Tablas
+South America/Colombia/Galeras/	South America/Colombia/Sucre CO/Galeras
+Europe/Belgium/Strassen/*	Europe/Belgium/Strassen BE/*
+Europe/Luxembourg/Strassen/*	Europe/Luxembourg/Strassen LU/*
+Africa/Côte d'Ivoire/Ghana/*	Africa/Côte d'Ivoire/Ghana CI/*
 

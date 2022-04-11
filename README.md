@@ -1,7 +1,7 @@
 # Processing new locations
 
 ```
-NEW_RUN=mergeloc_Apr07
+NEW_RUN=mergeloc_Apr11
 
 # Setup Repos
 [[ -d Ingest_Locations ]] || mkdir Ingest_Locations
@@ -14,9 +14,11 @@ git clone https://github.com/nextstrain/ncov.git
 cd ncov-ingest
 git branch ${NEW_RUN}      # For gisaid/genbank_annotations.txt
 git checkout ${NEW_RUN}
+git push origin ${NEW_RUN}
 cd ../ncov
 git branch ${NEW_RUN}       # For defaults/colors lat_long.txt
 git checkout ${NEW_RUN}
+git push origin ${NEW_RUN}
 
 # Pull existing s3 datasets
 nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
@@ -37,6 +39,8 @@ Place the above files in `ncov/scripts/curate_metadata/inputs_new_sequences`.
 
 Tag with Greenbox emoji to indicate it's been downloaded. Will replace with Greencheckmark emoji to indicate it's been merged.
 
+* [ ] TODO: Would be great if this was a remote pull, instead of a manual process...
+
 ## Run parse additional info
 
 From the `ncov` folder, run:
@@ -45,8 +49,9 @@ From the `ncov` folder, run:
 python scripts/curate_metadata/parse_additional_info.py --auto 
 
 ls -l scripts/curate_metadata/outputs_new_sequences  # View output files
-#> -rw-r--r--  1 jenchang  staff    59K Jan 12 12:18 omicron_additional_info.txt # don't worry
-#> -rw-r--r--  1 jenchang  staff    51K Jan 12 12:18 additional_info_annotations.tsv # added to top of files
+#> total 1.3M
+#> -rw-r--r-- 1 jenchang staff 995K Apr 11 11:57 additional_info_annotations.tsv # added to top of files
+#> -rw-r--r-- 1 jenchang staff 318K Apr 11 11:55 omicron_additional_info.txt # don't worry
 ```
 
 Add to top of gisaid_annotations
@@ -64,6 +69,7 @@ mv a.txt ../ncov-ingest/source-data/gisaid_annotations.tsv
 
 ```
 cp ../merge_loc/manualAnnotationRules.txt scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
+cp ../merge_loc/geoLocationRules.txt scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt
 python scripts/curate_metadata/curate_metadata.py 
 ```
 
@@ -94,6 +100,7 @@ less defaults/color_ordering.tsv  # Search for country, might be different spell
 # search country, division (a instead of n/y)
 emacs scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt
 ```
+
 Example
 
 ```
@@ -116,11 +123,11 @@ After it's done:
 
 ```
 ls -ltr scripts/curate_metadata/output_curate_metadata/
-total 49040
--rw-r--r--  1 jenchang  staff   622K Jan 12 12:25 lat_longs.tsv # ncov
--rw-r--r--  1 jenchang  staff   486K Jan 12 12:25 color_ordering.tsv #ncov in defaults
--rw-r--r--  1 jenchang  staff    23M Jan 12 12:27 gisaid_annotations.tsv
--rw-r--r--  1 jenchang  staff   124K Jan 12 12:27 genbank_annotations.tsv
+#> total 32M
+#> -rw-r--r-- 1 jenchang staff 625K Apr 11 13:24 lat_longs.tsv
+#> -rw-r--r-- 1 jenchang staff 562K Apr 11 13:24 color_ordering.tsv
+#> -rw-r--r-- 1 jenchang staff  30M Apr 11 13:27 gisaid_annotations.tsv
+#> -rw-r--r-- 1 jenchang staff 202K Apr 11 13:27 genbank_annotations.tsv
 ```
 
 ```
@@ -137,6 +144,10 @@ Add to rules to bottom of the files.
 ```
 echo "" >> ../ncov-ingest/source-data/gisaid_geoLocationRules.tsv 
 cat scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt >> ../ncov-ingest/source-data/gisaid_geoLocationRules.tsv
+
+# Remove empty lines
+cat ../ncov-ingest/source-data/gisaid_geoLocationRules.tsv | grep -v "^$" > one.txt
+mv one.txt ../ncov-ingest/source-data/gisaid_geoLocationRules.tsv
 ```
 
 > If you ever add rules to the `source-data/gisaid_geoLocationRules.tsv` file, new rules always have to be added to the bottom of the file. Then you can run the following to apply new changes and resolve conflicts
@@ -168,11 +179,6 @@ cat bin/check-gisaid-geoRules |\
   sed 's/utils./utils2./g' > \
   bin/jc_check-gisaid-geoRules
   
-cat lib/utils2/transforms.py |\
-  sed 's/utils./utils2./g' > \
-  temp.txt
-mv temp.txt lib/utils2/transforms.py
-
 cat lib/utils2/transformpipeline/transforms.py |\
   sed 's/utils./utils2./g' > \
   temp.txt
@@ -219,10 +225,12 @@ Go back to "curate" rerun to check rules again.
 
 ```
 cd ncov-ingest
-git commit -m "add: annotation updates up to 2022 Feb 28" source-data/*
+git commit -m "add: annotation updates up to 2022 Apr 11" source-data/*
+git status # double check
 git push origin ${NEW_RUN}
 cd ../ncov
-git commit -m "add: annotation updates up to 2022 Feb 28" defaults/*
+git commit -m "add: annotation updates up to 2022 Apr 11" defaults/*
+git status # double check
 git push origin ${NEW_RUN}
 ```
 
@@ -230,13 +238,13 @@ git push origin ${NEW_RUN}
 
 
 ```
-PR: add: annotation updates from 2022-02-17 to 2022-02-28
+add: annotation updates from 2022-04-01 to 2022-04-11
 
-Description of proposed changes:
-Update annotations up to Feb 28th. Let me know if I missed anything.
+### Description of proposed changes:
+Update annotations up to April 11th. Let me know if I missed anything.
 
 
-Related Issues:
-Related to https://github.com/nextstrain/ncov-ingest/pull/288
+### Related Issue(s):
+Related to https://github.com/nextstrain/ncov/pull/911
 ```
 
