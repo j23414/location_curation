@@ -2,7 +2,7 @@
 
 ```
 NEW_RUN=mergeloc_Apr25
-IN_DIR=~/Desktop/Ingest_Locations/Downloads/2022-04-25
+INDIR=~/Desktop/Ingest_Locations/Downloads/2022-04-25
 
 # Setup Repos
 [[ -d Ingest_Locations ]] || mkdir Ingest_Locations
@@ -73,6 +73,7 @@ mv a.txt ../ncov-ingest/source-data/gisaid_annotations.tsv
 ```
 cp ../merge_loc/manualAnnotationRules.txt scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
 cp ../merge_loc/geoLocationRules.txt scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt
+# Another one that takes several minutes, might be due to size of metadata though
 python scripts/curate_metadata/curate_metadata.py 
 ```
 
@@ -228,13 +229,13 @@ Go back to "curate" rerun to check rules again.
 
 ```
 cd ncov-ingest
-git commit -m "add: annotation updates up to 2022 Apr 18" source-data/*
+git commit -m "add: annotation updates up to 2022 Apr 25" source-data/*
 git status # double check
-git push --set-upstream origin ${NEW_RUN}
+#git push --set-upstream origin ${NEW_RUN}
 git push origin ${NEW_RUN}
 cd ../ncov
-git commit -m "add: annotation updates up to 2022 Apr 18" defaults/*
-git push --set-upstream origin ${NEW_RUN}
+git commit -m "add: annotation updates up to 2022 Apr 25" defaults/*
+# git push --set-upstream origin ${NEW_RUN}
 git status # double check
 git push origin ${NEW_RUN}
 ```
@@ -243,13 +244,77 @@ git push origin ${NEW_RUN}
 
 
 ```
-add: annotation updates from 2022-04-11 to 2022-04-18
+add: annotation updates from 2022-04-18 to 2022-04-25
 
 ### Description of proposed changes:
-Update annotations up to April 18th. Let me know if I missed anything.
+Update annotations up to April 25th. Let me know if I missed anything.
 
 
 ### Related Issue(s):
 Related to https://github.com/nextstrain/ncov/pull/923
+```
+
+## Comparisons
+
+**compare.sh**
+
+```
+#! /usr/bin/env bash
+ORI_DATA="ncov_lat_longs.tsv"
+NEW_DATA="czi_lat_longs.tsv"
+
+sort ${ORI_DATA} | grep -v "^$" > sorted_${ORI_DATA}
+sort ${NEW_DATA} | grep -v "^$" > sorted_${NEW_DATA}
+
+diff sorted_${ORI_DATA} sorted_${NEW_DATA} > diff.txt
+```
+
+```
+less diff.txt
+
+# Note: Remove 0
+# > division      0       60.50002        9.099972
+
+# Note: Couple of duplicates with slightly different spelling
+# > division      Ba Ria Vung Tau 10.58198        107.289986
+366a384
+# > division      Ba Ria-Vung Tau 10.58198        107.289986
+
+# > division      Flandre Occidentale     51.040474       2.9994214
+# > division      Flandre-Occidentale     51.040474       2.9994214
+
+# Note: Check on "East"
+# > division      East    3.9894392       14.178373
+# > division      East Azerbaijan 37.92112        46.68215
+
+# Note: Check on "North East"
+# > division      North East      -21.02448       27.51475
+# > division      North East Region       10.395977       -0.5410794
+```
+
+
+**merge_compare.R**
+
+```
+#! /usr/bin/env Rscript
+
+library(magrittr)
+library(tidyverse)
+
+# (1) Load original and new datasets
+ori_data <- readr::read_delim("sorted_ncov_lat_longs.tsv", 
+                              delim="\t", 
+                              col_names=c("level", "name", "lat", "long"))
+new_data <- readr::read_delim("sorted_czi_lat_longs.tsv",
+                              delim="\t", 
+                              col_names=c("level", "name", "lat", "long"))
+
+ori_data$source = "original"
+new_data$source = "czi"
+
+# (2) Merge
+
+
+# (3) Analyze
 ```
 
