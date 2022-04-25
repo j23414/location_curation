@@ -1,7 +1,8 @@
 # Processing new locations
 
 ```
-NEW_RUN=mergeloc_Apr11
+NEW_RUN=mergeloc_Apr25
+IN_DIR=~/Desktop/Ingest_Locations/Downloads/2022-04-25
 
 # Setup Repos
 [[ -d Ingest_Locations ]] || mkdir Ingest_Locations
@@ -26,6 +27,7 @@ nextstrain remote download s3://nextstrain-data/files/ncov/open/metadata.tsv.gz 
 
 # Pull data from slack
 mkdir -p scripts/curate_metadata/inputs_new_sequences
+cp ${INDIR}/* scripts/curate_metadata/inputs_new_sequences/.
 ```
 
 ## For new locations, download from slack:
@@ -46,7 +48,8 @@ Tag with Greenbox emoji to indicate it's been downloaded. Will replace with Gree
 From the `ncov` folder, run:
 
 ```
-python scripts/curate_metadata/parse_additional_info.py --auto 
+# This seems to take several minutes, add a timing command
+time python scripts/curate_metadata/parse_additional_info.py --auto 
 
 ls -l scripts/curate_metadata/outputs_new_sequences  # View output files
 #> total 1.3M
@@ -194,7 +197,7 @@ python3 bin/jc_check-gisaid-geoRules \
  
 mv gisaid_geoLocationRules.tsv source-data
 
-git diff
+git status
 #>	modified:   source-data/genbank_annotations.tsv
 #>	modified:   source-data/gisaid_annotations.tsv
 ```
@@ -225,11 +228,13 @@ Go back to "curate" rerun to check rules again.
 
 ```
 cd ncov-ingest
-git commit -m "add: annotation updates up to 2022 Apr 11" source-data/*
+git commit -m "add: annotation updates up to 2022 Apr 18" source-data/*
 git status # double check
+git push --set-upstream origin ${NEW_RUN}
 git push origin ${NEW_RUN}
 cd ../ncov
-git commit -m "add: annotation updates up to 2022 Apr 11" defaults/*
+git commit -m "add: annotation updates up to 2022 Apr 18" defaults/*
+git push --set-upstream origin ${NEW_RUN}
 git status # double check
 git push origin ${NEW_RUN}
 ```
@@ -238,13 +243,13 @@ git push origin ${NEW_RUN}
 
 
 ```
-add: annotation updates from 2022-04-01 to 2022-04-11
+add: annotation updates from 2022-04-11 to 2022-04-18
 
 ### Description of proposed changes:
-Update annotations up to April 11th. Let me know if I missed anything.
+Update annotations up to April 18th. Let me know if I missed anything.
 
 
 ### Related Issue(s):
-Related to https://github.com/nextstrain/ncov/pull/911
+Related to https://github.com/nextstrain/ncov/pull/923
 ```
 
