@@ -24,9 +24,21 @@ North America/Panama/Las Tablas/	North America/Panama/Los Santos/Las Tablas
 South America/Colombia/Galeras/	South America/Colombia/Sucre CO/Galeras
 Europe/Belgium/Strassen/*	Europe/Belgium/Strassen BE/*
 Europe/Luxembourg/Strassen/*	Europe/Luxembourg/Strassen LU/*
-Africa/Côte d'Ivoire/Ghana/*	Africa/Côte d'Ivoire/Ghana CI/*
 Asia/India/Tamil Nadu/Dindugul	Asia/India/Tamil Nadu/Dindigul
 Asia/India/Tamil Nadu/Perambulur	Asia/India/Tamil Nadu/Perambalur
 Asia/India/Telangana/Medchal Mallkajgiri	Asia/India/Telangana/Medchal–Malkajgiri
 Asia/India/Uttar Pradesh/Gautam Budhha Nagar	Asia/India/Uttar Pradesh/Gautam Buddha Nagar
-
+Asia/Bangladesh/Dhaka/Karanigonj	Asia/Bangladesh/Dhaka/Karaniganj
+Asia/Bangladesh/Dhaka/Munshigonj	Asia/Bangladesh/Dhaka/Munshiganj
+Asia/Bangladesh/Rangpur/Noaga	Asia/Bangladesh/Rangpur/Naoga
+Europe/France/Nouvelle-Aquitaine/Rouille	Europe/France/Nouvelle-Aquitaine/Rouillé
+Europe/France/Auvergne-Rhône-Alpes/Les Martres D'Artieres	Europe/France/Auvergne-Rhône-Alpes/Les Martres D'Artiere
+Europe/France/Auvergne-Rhône-Alpes/Perignat Les Sarliervres	Europe/France/Auvergne-Rhône-Alpes/Perignat Les Sarlieve
+Europe/Italy/Friuli Venezia Giulia/Buia	Europe/Italy/Friuli Venezia Giulia/Buja
+Europe/Italy/Friuli Venezia Giulia/Campofromido	Europe/Italy/Friuli Venezia Giulia/Campoformido
+Europe/Italy/Friuli Venezia Giulia/Reana del Roiale	Europe/Italy/Friuli Venezia Giulia/Reana del Rojale
+Europe/Austria/Tyrol/Kitzbuhel-Land	Europe/Austria/Tyrol/Kitzbühel-Land
+South America/Colombia/Valle del Cauca/Guacari	South America/Colombia/Valle del Cauca/Guacarí
+South America/Colombia/Risaralda/Dos Quebrada	South America/Colombia/Risaralda/Dosquebaradas
+South America/Ecuador/Canar/*	South America/Ecuador/Cañar/*
+Asia/West Bank/*/*	Asia/Palestine/West Bank/*

@@ -51,7 +51,7 @@ From the `ncov` folder, run:
 # This seems to take several minutes, add a timing command
 time python scripts/curate_metadata/parse_additional_info.py --auto 
 
-#> python scripts/curate_metadata/parse_additional_info.py --auto  194.46s user 451.02s system 51% cpu 20:42.76 total
+#> python scripts/curate_metadata/parse_additional_info.py --auto  190.32s user 407.83s system 59% cpu 16:51.23 total
 
 ls -l scripts/curate_metadata/outputs_new_sequences  # View output files
 #> total 700K
@@ -80,7 +80,6 @@ python scripts/curate_metadata/curate_metadata.py
 ```
 
 In top, at division region, may need to add manual annotation rules. Quit and rerun after editing file.
-
 ```
 # Fix Delimiters errors (Austrian case)
 vscode scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
