@@ -25,4 +25,8 @@ South America/Colombia/Galeras/	South America/Colombia/Sucre CO/Galeras
 Europe/Belgium/Strassen/*	Europe/Belgium/Strassen BE/*
 Europe/Luxembourg/Strassen/*	Europe/Luxembourg/Strassen LU/*
 Africa/Côte d'Ivoire/Ghana/*	Africa/Côte d'Ivoire/Ghana CI/*
+Asia/India/Tamil Nadu/Dindugul	Asia/India/Tamil Nadu/Dindigul
+Asia/India/Tamil Nadu/Perambulur	Asia/India/Tamil Nadu/Perambalur
+Asia/India/Telangana/Medchal Mallkajgiri	Asia/India/Telangana/Medchal–Malkajgiri
+Asia/India/Uttar Pradesh/Gautam Budhha Nagar	Asia/India/Uttar Pradesh/Gautam Buddha Nagar
 
