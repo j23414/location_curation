@@ -42,3 +42,38 @@ South America/Colombia/Valle del Cauca/Guacari	South America/Colombia/Valle del 
 South America/Colombia/Risaralda/Dos Quebrada	South America/Colombia/Risaralda/Dosquebaradas
 South America/Ecuador/Canar/*	South America/Ecuador/Cañar/*
 Asia/West Bank/*/*	Asia/Palestine/West Bank/*
+North America/USA/California/Yuma County	North America/USA/California/Yuma County CA
+North America/USA/New York/Wayne	North America/USA/New York/Wayne NY
+North America/USA/Arizona/Livingston	North America/USA/Arizona/Livingston AZ
+North America/USA/New York/Livingston	North America/USA/New York/Livingston NY
+North America/USA/New York/Montgomery	North America/USA/New York/Montgomery NY
+North America/USA/Texas/Wheeler County	North America/USA/Texas/Wheeler County TX
+North America/USA/Oregon/Wheeler County	North America/USA/Oregon/Wheeler County OR
+North America/USA/New York/Franklin	North America/USA/New York/Franklin NY
+North America/USA/New York/Monroe	North America/USA/New York/Monroe NY
+North America/USA/Ohio/Fulton	North America/USA/Ohio/Fulton OH
+North America/USA/New York/Fulton	North America/USA/New York/Fulton NY
+North America/USA/Ohio/Clinton	North America/USA/Ohio/Clinton OH
+North America/USA/New York/Clinton	North America/USA/New York/Clinton NY
+North America/USA/New York/Madison	North America/USA/New York/Madison NY
+North America/USA/Georgia/Chatham County	North America/USA/Georgia/Chatham County GA
+North America/USA/New York/Washington	North America/USA/New York/Washington NY
+South America/Brazil/Bahia/Riacho de Santana	South America/Brazil/Bahia/Riacho de Santana (Bahia)
+South America/Brazil/Rio Grande do Norte/Riacho de Santana	South America/Brazil/Rio Grande do Norte/Riacho de Santana (Rio Grande do Norte)
+South America/Brazil/Minas Gerais/Caldas	South America/Brazil/Minas Gerais/Caldas BR
+South America/Colombia/Antioquia/Caldas (Antioquia)	South America/Colombia/Antioquia/Caldas CO
+Africa/Kenya/Busia/*	Africa/Kenya/Busia KE/*
+Africa/Uganda/Busia/*	Africa/Uganda/Busia UG/*Asia/India/Tamil Nadu/Chegalpattu	Asia/India/Tamil Nadu/Chengalpattu
+Asia/India/Tamil Nadu/Chengalpatu	Asia/India/Tamil Nadu/Chengalpattu
+Asia/India/Tamil Nadu/Chengalpet	Asia/India/Tamil Nadu/Chengalpattu
+Asia/India/Tamil Nadu/Chengalpettu	Asia/India/Tamil Nadu/Chengalpattu
+Africa/South Africa/Gauteng/City of Ekurhulen	Africa/South Africa/Gauteng/City of Ekurhuleni
+Europe/France/Auvergne-Rhône-Alpes/Colombier	Europe/France/Auvergne-Rhône-Alpes/Colombiers
+South America/Brazil/Rondonia/Alvorada D' Oeste	South America/Brazil/Rondonia/Alvorada D Oeste
+South America/Brazil/Rondonia/Espigao do Oeste	South America/Brazil/Rondonia/Espigao D Oeste
+South America/Brazil/Rondonia/Espigao D'Oeste	South America/Brazil/Rondonia/Espigao D Oeste
+South America/Brazil/Rondonia/Ji Parana	South America/Brazil/Rondonia/Ji-Parana
+South America/Brazil/Rondonia/Santa Luzia D'Oeste	South America/Brazil/Rondonia/Santa Luzia D Oeste
+South America/Brazil/Rondonia/Santa Luzia Do Oeste	South America/Brazil/Rondonia/Santa Luzia D Oeste
+South America/Brazil/Rondonia/Teixeropolis	South America/Brazil/Rondonia/Teixeiropolis
+North America/USA/California/Alameda Coutny	North America/USA/California/Alameda County CA

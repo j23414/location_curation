@@ -1,8 +1,8 @@
 # Processing new locations
 
 ```
-NEW_RUN=mergeloc_May2
-INDIR=~/Desktop/Ingest_Locations/Downloads/2022-05-02
+NEW_RUN=mergeloc_Jun6
+INDIR=~/Desktop/Ingest_Locations/Downloads/2022-06-06
 
 # Setup Repos
 [[ -d Ingest_Locations ]] || mkdir Ingest_Locations
@@ -51,12 +51,12 @@ From the `ncov` folder, run:
 # This seems to take several minutes, add a timing command
 time python scripts/curate_metadata/parse_additional_info.py --auto 
 
-#> python scripts/curate_metadata/parse_additional_info.py --auto  190.32s user 407.83s system 59% cpu 16:51.23 total
+#> python scripts/curate_metadata/parse_additional_info.py --auto  206.32s user 494.70s system 55% cpu 21:03.22 total
 
 ls -l scripts/curate_metadata/outputs_new_sequences  # View output files
 #> total 700K
-#> -rw-r--r-- 1 jenchang staff 623K May  2 10:16 additional_info_annotations.tsv
-#> -rw-r--r-- 1 jenchang staff  75K May  2 10:14 omicron_additional_info.txt
+#> -rw-r--r-- 1 jenchang staff 415K Jun  6 09:24 additional_info_annotations.tsv
+#> -rw-r--r-- 1 jenchang staff  31K Jun  6 09:22 omicron_additional_info.txt
 ```
 
 Add to top of gisaid_annotations
@@ -128,11 +128,11 @@ After it's done:
 
 ```
 ls -ltr scripts/curate_metadata/output_curate_metadata/
-#> total 32M
-#> -rw-r--r-- 1 jenchang staff 626K May  2 10:30 lat_longs.tsv
-#> -rw-r--r-- 1 jenchang staff 575K May  2 10:30 color_ordering.tsv
-#> -rw-r--r-- 1 jenchang staff  31M May  2 10:37 gisaid_annotations.tsv
-#> -rw-r--r-- 1 jenchang staff 202K May  2 10:37 genbank_annotations.tsv
+#> total 35M
+#> -rw-r--r-- 1 jenchang staff 626K Jun  6 10:03 lat_longs.tsv
+#> -rw-r--r-- 1 jenchang staff 592K Jun  6 10:03 color_ordering.tsv
+#> -rw-r--r-- 1 jenchang staff  33M Jun  6 10:06 gisaid_annotations.tsv
+#> -rw-r--r-- 1 jenchang staff 202K Jun  6 10:06 genbank_annotations.tsv
 ```
 
 ```
@@ -230,12 +230,12 @@ Go back to "curate" rerun to check rules again.
 
 ```
 cd ncov-ingest
-git commit -m "add: annotation updates up to 2022 May 2" source-data/*
+git commit -m "add: annotation updates up to 2022-06-06" source-data/*
 git status # double check
 #git push --set-upstream origin ${NEW_RUN}
 git push origin ${NEW_RUN}
 cd ../ncov
-git commit -m "add: annotation updates up to 2022 May 2" defaults/*
+git commit -m "add: annotation updates up to 2022-06-06" defaults/*
 # git push --set-upstream origin ${NEW_RUN}
 git status # double check
 git push origin ${NEW_RUN}
