@@ -1,8 +1,8 @@
 # Processing new locations
 
 ```
-NEW_RUN=mergeloc_Jun6
-INDIR=~/Desktop/Ingest_Locations/Downloads/2022-06-06
+NEW_RUN=mergeloc_Jun13
+INDIR=~/Desktop/Ingest_Locations/Downloads/2022-06-13
 
 # Setup Repos
 [[ -d Ingest_Locations ]] || mkdir Ingest_Locations
