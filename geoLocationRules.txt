@@ -1,79 +1,71 @@
-Europe/Slovakia/Kosice - Okolie/	Europe/Slovakia/Kosice/Kosice - Okolie
-Africa/Tunisia/Mannouba/*	Africa/Tunisia/Manouba/*
-Africa/Tunisia/Kairouen/*	Africa/Tunisia/Kairouan/*
-Asia/Vietnam/Tayninh/*	Asia/Vietnam/Tay Ninh/*
-Africa/Guinea/Nzerekore/*	Africa/Guinea/Nzerekore Region/*
-Europe/Belarus/Mogilev/*	Europe/Belarus/Mogilev Region/*
-Europe/Belarus/Grodno/*	Europe/Belarus/Grodno Region/*
-Africa/Kenya/Muranga/	Africa/Kenya/Muranga County/Muranga
-Europe/Belarus/Brest/	Europe/Belarus/Brest Region/Brest
-Africa/Kenya/Muranga County/	Africa/Kenya/Murang'a County/Muranga
-Africa/Kenya/Kuria West/	Africa/Kenya/Migori/Kuria West
-Africa/Botswana/Greater Phikwe/	Africa/Botswana/Central District BW/Greater Phikwe
-Africa/Morocco/Guelmim/	Africa/Morocco/Guelmim Province/Guelmim
-Europe/Belgium/St-Jans-Molenbeek/*	Europe/Belgium/St Jans Molenbeek/*
-Europe/Serbia/Beograad/*	Europe/Serbia/Beograd/*
-Europe/Greece/Western Macedonia Region/*	Europe/Greece/Western Macedonia/*
-Asia/Vietnam/Vinhlong/*	Asia/Vietnam/Vinh Long/*
-Asia/Vietnam/Longan/*	Asia/Vietnam/Long An/*
-Asia/China/Shenzhen/	Asia/China/Guangdong/Shenzhen
-Asia/Pakistan/Peshawar/	Asia/Pakistan/Khyber Pakhtunkhwa/Peshawar
-Africa/Botswana/Serowe/*	Africa/Botswana/Central District BW/*
-Africa/Botswana/Malotwane/	Africa/Botswana/Katleng/Malotwane
-North America/Panama/Las Tablas/	North America/Panama/Los Santos/Las Tablas
-South America/Colombia/Galeras/	South America/Colombia/Sucre CO/Galeras
-Europe/Belgium/Strassen/*	Europe/Belgium/Strassen BE/*
-Europe/Luxembourg/Strassen/*	Europe/Luxembourg/Strassen LU/*
-Asia/India/Tamil Nadu/Dindugul	Asia/India/Tamil Nadu/Dindigul
-Asia/India/Tamil Nadu/Perambulur	Asia/India/Tamil Nadu/Perambalur
-Asia/India/Telangana/Medchal Mallkajgiri	Asia/India/Telangana/Medchal–Malkajgiri
-Asia/India/Uttar Pradesh/Gautam Budhha Nagar	Asia/India/Uttar Pradesh/Gautam Buddha Nagar
-Asia/Bangladesh/Dhaka/Karanigonj	Asia/Bangladesh/Dhaka/Karaniganj
-Asia/Bangladesh/Dhaka/Munshigonj	Asia/Bangladesh/Dhaka/Munshiganj
-Asia/Bangladesh/Rangpur/Noaga	Asia/Bangladesh/Rangpur/Naoga
-Europe/France/Nouvelle-Aquitaine/Rouille	Europe/France/Nouvelle-Aquitaine/Rouillé
-Europe/France/Auvergne-Rhône-Alpes/Les Martres D'Artieres	Europe/France/Auvergne-Rhône-Alpes/Les Martres D'Artiere
-Europe/France/Auvergne-Rhône-Alpes/Perignat Les Sarliervres	Europe/France/Auvergne-Rhône-Alpes/Perignat Les Sarlieve
-Europe/Italy/Friuli Venezia Giulia/Buia	Europe/Italy/Friuli Venezia Giulia/Buja
-Europe/Italy/Friuli Venezia Giulia/Campofromido	Europe/Italy/Friuli Venezia Giulia/Campoformido
-Europe/Italy/Friuli Venezia Giulia/Reana del Roiale	Europe/Italy/Friuli Venezia Giulia/Reana del Rojale
-Europe/Austria/Tyrol/Kitzbuhel-Land	Europe/Austria/Tyrol/Kitzbühel-Land
-South America/Colombia/Valle del Cauca/Guacari	South America/Colombia/Valle del Cauca/Guacarí
-South America/Colombia/Risaralda/Dos Quebrada	South America/Colombia/Risaralda/Dosquebaradas
-South America/Ecuador/Canar/*	South America/Ecuador/Cañar/*
-Asia/West Bank/*/*	Asia/Palestine/West Bank/*
-North America/USA/California/Yuma County	North America/USA/California/Yuma County CA
-North America/USA/New York/Wayne	North America/USA/New York/Wayne NY
-North America/USA/Arizona/Livingston	North America/USA/Arizona/Livingston AZ
-North America/USA/New York/Livingston	North America/USA/New York/Livingston NY
-North America/USA/New York/Montgomery	North America/USA/New York/Montgomery NY
-North America/USA/Texas/Wheeler County	North America/USA/Texas/Wheeler County TX
-North America/USA/Oregon/Wheeler County	North America/USA/Oregon/Wheeler County OR
-North America/USA/New York/Franklin	North America/USA/New York/Franklin NY
-North America/USA/New York/Monroe	North America/USA/New York/Monroe NY
-North America/USA/Ohio/Fulton	North America/USA/Ohio/Fulton OH
-North America/USA/New York/Fulton	North America/USA/New York/Fulton NY
-North America/USA/Ohio/Clinton	North America/USA/Ohio/Clinton OH
-North America/USA/New York/Clinton	North America/USA/New York/Clinton NY
-North America/USA/New York/Madison	North America/USA/New York/Madison NY
-North America/USA/Georgia/Chatham County	North America/USA/Georgia/Chatham County GA
-North America/USA/New York/Washington	North America/USA/New York/Washington NY
-South America/Brazil/Bahia/Riacho de Santana	South America/Brazil/Bahia/Riacho de Santana (Bahia)
-South America/Brazil/Rio Grande do Norte/Riacho de Santana	South America/Brazil/Rio Grande do Norte/Riacho de Santana (Rio Grande do Norte)
-South America/Brazil/Minas Gerais/Caldas	South America/Brazil/Minas Gerais/Caldas BR
-South America/Colombia/Antioquia/Caldas (Antioquia)	South America/Colombia/Antioquia/Caldas CO
 Africa/Kenya/Busia/*	Africa/Kenya/Busia KE/*
-Africa/Uganda/Busia/*	Africa/Uganda/Busia UG/*Asia/India/Tamil Nadu/Chegalpattu	Asia/India/Tamil Nadu/Chengalpattu
+Africa/Uganda/Busia/*	Africa/Uganda/Busia UG/*
+Africa/South Africa/Gauteng/City of Ekurhulen	Africa/South Africa/Gauteng/City of Ekurhuleni
+Asia/India/Jammu and Kashmir/Kupwara	Asia/India/Jammu and Kashmir/Kupwara JK
+Asia/India/Tamil Nadu/Chegalpattu	Asia/India/Tamil Nadu/Chengalpattu
 Asia/India/Tamil Nadu/Chengalpatu	Asia/India/Tamil Nadu/Chengalpattu
 Asia/India/Tamil Nadu/Chengalpet	Asia/India/Tamil Nadu/Chengalpattu
 Asia/India/Tamil Nadu/Chengalpettu	Asia/India/Tamil Nadu/Chengalpattu
-Africa/South Africa/Gauteng/City of Ekurhulen	Africa/South Africa/Gauteng/City of Ekurhuleni
+Asia/India/Uttar Pradesh/Kupwara	Asia/India/Uttar Pradesh/Kupwara UP
+Europe/Czech Republic/Pardubice Region/Rohozna	Europe/Czech Republic/Pardubice Region/Rohozna PA
+Europe/Czech Republic/Vysocina Region/Rohozna	Europe/Czech Republic/Vysocina Region/Rohozna VY
 Europe/France/Auvergne-Rhône-Alpes/Colombier	Europe/France/Auvergne-Rhône-Alpes/Colombiers
+North America/Costa Rica/Cartago CR/Central	North America/Costa Rica/Cartago CR/Central CR
+North America/Mexico/Mexico City/Cuauhtemoc	North America/Mexico/Mexico City/Cuauhtemoc CMX
+North America/Mexico/Mexico City/Iztapalapa	North America/Mexico/Mexico City/Iztapalapa CMX
+North America/Mexico/Nuevo Leon/Iztapalapa	North America/Mexico/Nuevo Leon/Iztapalapa NLE
+North America/USA/Arizona/Livingston	North America/USA/Arizona/Livingston AZ
+North America/USA/California/Alameda Coutny	North America/USA/California/Alameda County CA
+North America/USA/California/Yuma County	North America/USA/California/Yuma County CA
+North America/USA/Georgia/Chatham County	North America/USA/Georgia/Chatham County GA
+North America/USA/Illinois/Alamance County	North America/USA/Illinois/Alamance County IL
+North America/USA/Illinois/Porter County	North America/USA/Illinois/Porter County IL
+North America/USA/Indiana/Porter County	North America/USA/Indiana/Porter County IN
+North America/USA/Minnesota/Clay County	North America/USA/Minnesota/Clay County MN
+North America/USA/New York/Central	North America/USA/New York/Central NY
+North America/USA/New York/Clinton	North America/USA/New York/Clinton NY
+North America/USA/New York/Franklin	North America/USA/New York/Franklin NY
+North America/USA/New York/Fulton	North America/USA/New York/Fulton NY
+North America/USA/New York/Livingston	North America/USA/New York/Livingston NY
+North America/USA/New York/Madison	North America/USA/New York/Madison NY
+North America/USA/New York/Monroe	North America/USA/New York/Monroe NY
+North America/USA/New York/Montgomery	North America/USA/New York/Montgomery NY
+North America/USA/New York/Washington	North America/USA/New York/Washington NY
+North America/USA/New York/Wayne	North America/USA/New York/Wayne NY
+North America/USA/North Carolina/Alamance County	North America/USA/North Carolina/Alamance County NC
+North America/USA/Ohio/Clinton	North America/USA/Ohio/Clinton OH
+North America/USA/Ohio/Fulton	North America/USA/Ohio/Fulton OH
+North America/USA/Oregon/Wheeler County	North America/USA/Oregon/Wheeler County OR
+North America/USA/Texas/Wheeler County	North America/USA/Texas/Wheeler County TX
+South America/Brazil/Bahia/Prado	South America/Brazil/Bahia/Prado BR
+South America/Brazil/Bahia/Riacho de Santana	South America/Brazil/Bahia/Riacho de Santana BA
+South America/Brazil/Ceará/Sao Goncalo	South America/Brazil/Ceará/Sao Goncalo CE
+South America/Brazil/Goiás/Rio de Janeiro	South America/Brazil/Goiás/Rio de Janeiro GO
+South America/Brazil/Goiás/Uberlandia	South America/Brazil/Goiás/Uberlandia GO
+South America/Brazil/Minas Gerais/Caldas	South America/Brazil/Minas Gerais/Caldas MG
+South America/Brazil/Minas Gerais/Uberlandia	South America/Brazil/Minas Gerais/Uberlandia MG
+South America/Brazil/Rio Grande do Norte/Riacho de Santana	South America/Brazil/Rio Grande do Norte/Riacho de Santana RN
+South America/Brazil/Rio Grande do Sul/Soledade	South America/Brazil/Rio Grande do Sul/Soledade RS
+South America/Brazil/Rio de Janeiro/Rio de Janeiro	South America/Brazil/Rio de Janeiro/Rio de Janeiro RJ
+South America/Brazil/Rio de Janeiro/Sao Goncalo	South America/Brazil/Rio de Janeiro/Sao Goncalo RJ
 South America/Brazil/Rondonia/Alvorada D' Oeste	South America/Brazil/Rondonia/Alvorada D Oeste
-South America/Brazil/Rondonia/Espigao do Oeste	South America/Brazil/Rondonia/Espigao D Oeste
+South America/Brazil/Rondonia/Campo Grande	South America/Brazil/Rondonia/Campo Grande RO
+South America/Brazil/Rondonia/Cariacica	South America/Brazil/Rondonia/Cariacica RO
 South America/Brazil/Rondonia/Espigao D'Oeste	South America/Brazil/Rondonia/Espigao D Oeste
+South America/Brazil/Rondonia/Espigao do Oeste	South America/Brazil/Rondonia/Espigao D Oeste
 South America/Brazil/Rondonia/Ji Parana	South America/Brazil/Rondonia/Ji-Parana
 South America/Brazil/Rondonia/Santa Luzia D'Oeste	South America/Brazil/Rondonia/Santa Luzia D Oeste
 South America/Brazil/Rondonia/Santa Luzia Do Oeste	South America/Brazil/Rondonia/Santa Luzia D Oeste
 South America/Brazil/Rondonia/Teixeropolis	South America/Brazil/Rondonia/Teixeiropolis
-North America/USA/California/Alameda Coutny	North America/USA/California/Alameda County CA
+South America/Brazil/Santa Catarina/Soledade	South America/Brazil/Santa Catarina/Soledade SC
+South America/Colombia/Antioquia/Caldas (Antioquia)	South America/Colombia/Antioquia/Caldas CO ANT
+South America/Colombia/Antioquia/Prado	South America/Colombia/Antioquia/Prado CO
+South America/Paraguay/San Salvador/*	South America/Paraguay/San Salvador PY/*
+North America/El Salvador/San Salvador/*	North America/El Salvador/San Salvador SV/*
+Asia/Vietnam/Tuyenquang/*	Asia/Vietnam/Tuyen Quang/*
+Africa/Malawi/Northern/*	Africa/Malawi/Northern Region MW/*
+Africa/Ghana/Northern/*	Africa/Ghana/Northern Region GH/*
+Africa/Uganda/Northern/*	Africa/Uganda/Northern Region UG/*
+Asia/India/Chhattisgarh/Bilaspur	Asia/India/Chhattisgarh/Bilaspur CT
+Asia/India/Himachal Pradesh/Bilaspur	Asia/India/Himachal Pradesh/Bilaspur HP
+North America/USA/Ohio/Lawrence	North America/USA/Ohio/Lawrence OH

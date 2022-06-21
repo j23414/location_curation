@@ -51,12 +51,14 @@ From the `ncov` folder, run:
 # This seems to take several minutes, add a timing command
 time python scripts/curate_metadata/parse_additional_info.py --auto 
 
-#> python scripts/curate_metadata/parse_additional_info.py --auto  206.32s user 494.70s system 55% cpu 21:03.22 total
+#> real	23m20.843s
+#> user	4m2.279s
+#> sys	8m42.588s
 
 ls -l scripts/curate_metadata/outputs_new_sequences  # View output files
-#> total 700K
-#> -rw-r--r-- 1 jenchang staff 415K Jun  6 09:24 additional_info_annotations.tsv
-#> -rw-r--r-- 1 jenchang staff  31K Jun  6 09:22 omicron_additional_info.txt
+#> total 408K
+#> -rw-r--r-- 1 jenchang staff 9.8K Jun 13 10:46 omicron_additional_info.txt
+#> -rw-r--r-- 1 jenchang staff 394K Jun 13 10:48 additional_info_annotations.tsv
 ```
 
 Add to top of gisaid_annotations
@@ -133,6 +135,12 @@ ls -ltr scripts/curate_metadata/output_curate_metadata/
 #> -rw-r--r-- 1 jenchang staff 592K Jun  6 10:03 color_ordering.tsv
 #> -rw-r--r-- 1 jenchang staff  33M Jun  6 10:06 gisaid_annotations.tsv
 #> -rw-r--r-- 1 jenchang staff 202K Jun  6 10:06 genbank_annotations.tsv
+
+total 35M
+-rw-r--r-- 1 jenchang staff 627K Jun 15 10:04 lat_longs.tsv
+-rw-r--r-- 1 jenchang staff 593K Jun 15 10:04 color_ordering.tsv
+-rw-r--r-- 1 jenchang staff  33M Jun 15 10:10 gisaid_annotations.tsv
+-rw-r--r-- 1 jenchang staff 202K Jun 15 10:10 genbank_annotations.tsv
 ```
 
 ```
@@ -230,12 +238,12 @@ Go back to "curate" rerun to check rules again.
 
 ```
 cd ncov-ingest
-git commit -m "add: annotation updates up to 2022-06-06" source-data/*
+git commit -m "add: annotation updates up to 2022-06-21" source-data/*
 git status # double check
 #git push --set-upstream origin ${NEW_RUN}
 git push origin ${NEW_RUN}
 cd ../ncov
-git commit -m "add: annotation updates up to 2022-06-06" defaults/*
+git commit -m "add: annotation updates up to 2022-06-21" defaults/*
 # git push --set-upstream origin ${NEW_RUN}
 git status # double check
 git push origin ${NEW_RUN}
@@ -245,10 +253,10 @@ git push origin ${NEW_RUN}
 
 
 ```
-add: annotation updates from 2022-04-25 to 2022-05-02
+add: annotation updates up to 2022-06-21
 
 ### Description of proposed changes:
-Update annotations up to May 2nd. Let me know if I missed anything.
+Update annotations up to June 21st. Let me know if I missed anything.
 
 
 ### Related Issue(s):
