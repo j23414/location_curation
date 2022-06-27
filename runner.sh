@@ -3,8 +3,8 @@
 set -v
 
 # === Variables to change each time
-export NEW_RUN=mergeloc_Jun21
-export INDIR=~/Desktop/Ingest_Locations/Downloads/2022-06-21
+export NEW_RUN=mergeloc_Jun27
+export INDIR=~/Desktop/Ingest_Locations/Downloads/2022-06-27
 
 # # Setup Repos
 # #[[ -d Ingest_Locations ]] || mkdir Ingest_Locations
@@ -44,8 +44,8 @@ cat ../ncov-ingest/source-data/gisaid_annotations.tsv >> temp.txt
 cat temp.txt | grep -v "^$" > a.txt
 mv a.txt ../ncov-ingest/source-data/gisaid_annotations.tsv
 
-cp ../manualAnnotationRules.txt scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
-cp ../temp.txt scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt
+cp ../merge_loc/manualAnnotationRules.txt scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
+cp ../merge_loc/temp.txt scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt
 # Another one that takes several minutes, might be due to size of metadata though
 date
 python scripts/curate_metadata/curate_metadata.py
