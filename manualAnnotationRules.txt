@@ -6,3 +6,4 @@ Europe,Austria,Upper Austria / Voecklabruck / St. Georgen Im Attergau,	Europe,Au
 Europe,Austria,Upper Austria / Voecklabruck / Rutzenmoos,	Europe,Austria,Upper Austria,Rutzenmoos
 Europe,Austria,Upper Austria / Voecklabruck / Frankenmarkt,	Europe,Austria,Upper Austria,Frankenmarkt
 Europe,Austria,Upper Austria / Gmunden / Laakirchen,	Europe,Austria,Upper Austria,Laakirchen
+Europe,Italy,Emily-Romagna,	Europe,Italy,Emilia-Romagna,

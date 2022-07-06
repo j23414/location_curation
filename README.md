@@ -1,7 +1,7 @@
 # Processing new locations
 
 ```
-NEW_RUN=mergeloc_Jun13
+NEW_RUN=mergeloc_Jun27
 INDIR=~/Desktop/Ingest_Locations/Downloads/2022-06-13
 
 # Setup Repos
@@ -238,12 +238,12 @@ Go back to "curate" rerun to check rules again.
 
 ```
 cd ncov-ingest
-git commit -m "add: annotation updates up to 2022-06-21" source-data/*
+git commit -m "add: annotation updates up to 2022-06-27" source-data/*
 git status # double check
 #git push --set-upstream origin ${NEW_RUN}
 git push origin ${NEW_RUN}
 cd ../ncov
-git commit -m "add: annotation updates up to 2022-06-21" defaults/*
+git commit -m "add: annotation updates up to 2022-06-27" defaults/*
 # git push --set-upstream origin ${NEW_RUN}
 git status # double check
 git push origin ${NEW_RUN}
@@ -253,14 +253,14 @@ git push origin ${NEW_RUN}
 
 
 ```
-add: annotation updates up to 2022-06-21
+add: annotation updates up to 2022-06-27
 
 ### Description of proposed changes:
-Update annotations up to June 21st. Let me know if I missed anything.
+Update annotations up to June 27th. Let me know if I missed anything.
 
 
 ### Related Issue(s):
-Related to https://github.com/nextstrain/ncov/pull/940
+Related to https://github.com/nextstrain/ncov/pull/966
 ```
 
 ## Comparisons
