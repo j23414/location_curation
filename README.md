@@ -1,87 +1,52 @@
-# Processing new locations
+# Location Curation
 
-```
-NEW_RUN=mergeloc_Jun27
-INDIR=~/Desktop/Ingest_Locations/Downloads/2022-06-13
+1. Set environmental variables
+  https://github.com/j23414/location_curation/blob/7ef5e25bc148cf6b55f35e2ebfb89aa9d98c55b5/runner.sh#L5-L9
 
-# Setup Repos
-[[ -d Ingest_Locations ]] || mkdir Ingest_Locations
-cd Ingest_Locations
+2. Pull repos and create new branches
+  https://github.com/j23414/location_curation/blob/7ef5e25bc148cf6b55f35e2ebfb89aa9d98c55b5/runner.sh#L12-L23
 
-git clone https://github.com/j23414/merge_loc.git  # For manual annotation, but remove later
+3.  Pull existing s3 datasets
+  https://github.com/j23414/location_curation/blob/7ef5e25bc148cf6b55f35e2ebfb89aa9d98c55b5/runner.sh#L27-L28
+  
+4. Link pulled "additional_info.txt" files from slack channel
+  https://github.com/j23414/location_curation/blob/7ef5e25bc148cf6b55f35e2ebfb89aa9d98c55b5/runner.sh#L32-L33
 
-git clone https://github.com/nextstrain/ncov-ingest.git
-git clone https://github.com/nextstrain/ncov.git
-cd ncov-ingest
-git branch ${NEW_RUN}      # For gisaid/genbank_annotations.txt
-git checkout ${NEW_RUN}
-git push origin ${NEW_RUN}
-cd ../ncov
-git branch ${NEW_RUN}       # For defaults/colors lat_long.txt
-git checkout ${NEW_RUN}
-git push origin ${NEW_RUN}
+  For new locations, download from slack:
 
-# Pull existing s3 datasets
-nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
-nextstrain remote download s3://nextstrain-data/files/ncov/open/metadata.tsv.gz /dev/stdout | gunzip > data/metadata_genbank.tsv
+  From the `#ncov-gisaid-updates` slack channel, download:
 
-# Pull data from slack
-mkdir -p scripts/curate_metadata/inputs_new_sequences
-cp ${INDIR}/* scripts/curate_metadata/inputs_new_sequences/.
-```
+  * `additional-info-changes.txt`
+  * (download all or in batches of 10) or rename 10> with a 9 prefix
 
-## For new locations, download from slack:
+  Place the above files in `ncov/scripts/curate_metadata/inputs_new_sequences`.
 
-From the `#ncov-gisaid-updates` slack channel, download:
+  Tag with Greenbox emoji to indicate it's been downloaded. Will replace with Greencheckmark emoji to indicate it's been merged.
 
-* `additional-info-changes.txt`
-* (download all or in batches of 10) or rename 10> with a 9 prefix
+  * [ ] TODO: Remote pull, instead of a manual process...
 
-Place the above files in `ncov/scripts/curate_metadata/inputs_new_sequences`.
+5. Run parse additional info from the `ncov` folder
+  https://github.com/j23414/location_curation/blob/7ef5e25bc148cf6b55f35e2ebfb89aa9d98c55b5/runner.sh#L37-L38
+  
+  ```
+  #> real	23m20.843s
+  #> user	4m2.279s
+  #> sys	8m42.588s
+  
+  #> total 408K
+  #> -rw-r--r-- 1 jenchang staff 9.8K Jun 13 10:46 omicron_additional_info.txt
+  #> -rw-r--r-- 1 jenchang staff 394K Jun 13 10:48 additional_info_annotations.tsv
+  ```
 
-Tag with Greenbox emoji to indicate it's been downloaded. Will replace with Greencheckmark emoji to indicate it's been merged.
+6. Add to top of gisaid_annotations
+  https://github.com/j23414/location_curation/blob/7ef5e25bc148cf6b55f35e2ebfb89aa9d98c55b5/runner.sh#L41-L46
 
-* [ ] TODO: Would be great if this was a remote pull, instead of a manual process...
+7. Run curate metadata
 
-## Run parse additional info
-
-From the `ncov` folder, run:
-
-```
-# This seems to take several minutes, add a timing command
-time python scripts/curate_metadata/parse_additional_info.py --auto 
-
-#> real	23m20.843s
-#> user	4m2.279s
-#> sys	8m42.588s
-
-ls -l scripts/curate_metadata/outputs_new_sequences  # View output files
-#> total 408K
-#> -rw-r--r-- 1 jenchang staff 9.8K Jun 13 10:46 omicron_additional_info.txt
-#> -rw-r--r-- 1 jenchang staff 394K Jun 13 10:48 additional_info_annotations.tsv
-```
-
-Add to top of gisaid_annotations
-
-```
-cat scripts/curate_metadata/outputs_new_sequences/additional_info_annotations.tsv > temp.txt
-echo "" >> temp.txt
-cat ../ncov-ingest/source-data/gisaid_annotations.tsv >> temp.txt
-# Remove empty lines
-cat temp.txt | grep -v "^$" > a.txt
-mv a.txt ../ncov-ingest/source-data/gisaid_annotations.tsv
-```
-
-## Run curate metadata
-
-```
-cp ../merge_loc/manualAnnotationRules.txt scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
-cp ../merge_loc/geoLocationRules.txt scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt
-# Another one that takes several minutes, might be due to size of metadata though
-python scripts/curate_metadata/curate_metadata.py 
-```
+  https://github.com/j23414/location_curation/blob/7ef5e25bc148cf6b55f35e2ebfb89aa9d98c55b5/runner.sh#L48-L52
 
 In top, at division region, may need to add manual annotation rules. Quit and rerun after editing file.
+
 ```
 # Fix Delimiters errors (Austrian case)
 vscode scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
@@ -237,93 +202,26 @@ Go back to "curate" rerun to check rules again.
 ## Commit
 
 ```
+DAY='2022-08-29'
 cd ncov-ingest
-git commit -m "add: annotation updates up to 2022-06-27" source-data/*
-git status # double check
-#git push --set-upstream origin ${NEW_RUN}
+git commit -m "add: annotation updates up to ${DAY}" source-data/*
 git push origin ${NEW_RUN}
 cd ../ncov
-git commit -m "add: annotation updates up to 2022-06-27" defaults/*
+git commit -m "add: annotation updates up to ${DAY}" defaults/*
 # git push --set-upstream origin ${NEW_RUN}
-git status # double check
 git push origin ${NEW_RUN}
 ```
 
 ## PR
 
-
 ```
 add: annotation updates up to 2022-06-27
 
 ### Description of proposed changes:
+
 Update annotations up to June 27th. Let me know if I missed anything.
 
-
 ### Related Issue(s):
+
 Related to https://github.com/nextstrain/ncov/pull/966
 ```
-
-## Comparisons
-
-**compare.sh**
-
-```
-#! /usr/bin/env bash
-ORI_DATA="ncov_lat_longs.tsv"
-NEW_DATA="czi_lat_longs.tsv"
-
-sort ${ORI_DATA} | grep -v "^$" > sorted_${ORI_DATA}
-sort ${NEW_DATA} | grep -v "^$" > sorted_${NEW_DATA}
-
-diff sorted_${ORI_DATA} sorted_${NEW_DATA} > diff.txt
-```
-
-```
-less diff.txt
-
-# Note: Remove 0
-# > division      0       60.50002        9.099972
-
-# Note: Couple of duplicates with slightly different spelling
-# > division      Ba Ria Vung Tau 10.58198        107.289986
-366a384
-# > division      Ba Ria-Vung Tau 10.58198        107.289986
-
-# > division      Flandre Occidentale     51.040474       2.9994214
-# > division      Flandre-Occidentale     51.040474       2.9994214
-
-# Note: Check on "East"
-# > division      East    3.9894392       14.178373
-# > division      East Azerbaijan 37.92112        46.68215
-
-# Note: Check on "North East"
-# > division      North East      -21.02448       27.51475
-# > division      North East Region       10.395977       -0.5410794
-```
-
-
-**merge_compare.R**
-
-```
-#! /usr/bin/env Rscript
-
-library(magrittr)
-library(tidyverse)
-
-# (1) Load original and new datasets
-ori_data <- readr::read_delim("sorted_ncov_lat_longs.tsv", 
-                              delim="\t", 
-                              col_names=c("level", "name", "lat", "long"))
-new_data <- readr::read_delim("sorted_czi_lat_longs.tsv",
-                              delim="\t", 
-                              col_names=c("level", "name", "lat", "long"))
-
-ori_data$source = "original"
-new_data$source = "czi"
-
-# (2) Merge
-
-
-# (3) Analyze
-```
-

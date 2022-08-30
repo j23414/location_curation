@@ -1,46 +1,37 @@
 #! /usr/bin/env bash
-set -e
-set -v
-set -u
+set -euv
 
 # === Variables to change each time
-export NEW_RUN=mergeloc_Jul5
-export INDIR=~/Desktop/Ingest_Locations/Downloads/2022-07-05
-export MERGE_LOC=~/Desktop/Ingest_Locations/merge_loc
-export DIR="build_rm_additional"
+export DATE=2022-08-29
+export NEW_BRANCH="location_curation/${DATE}"
+export INDIR=~/Desktop/Ingest_Locations/Downloads/${DATE}
+export LOC_CUR=~/Desktop/Ingest_Locations/location_curation
+export NEW_DIR="Run_${DATE}"
 
-# # # Setup Repos
-# # #[[ -d Ingest_Locations ]] || mkdir Ingest_Locations
-# # #cd Ingest_Locations
-# # #git clone https://github.com/j23414/merge_loc.git  # For manual annotation, but remove later
-# # 
-mkdir -p ${DIR}
-cd ${DIR}
+# === Setup Repos
+[[ -d location_curation ]] || git clone https://github.com/j23414/location_curation.git 
+
+mkdir -p ${NEW_DIR}
+cd ${NEW_DIR}
 git clone https://github.com/nextstrain/ncov-ingest.git
 git clone https://github.com/nextstrain/ncov.git
 cd ncov-ingest
-git branch ${NEW_RUN}      # For gisaid/genbank_annotations.txt
-git checkout ${NEW_RUN}
-#git push origin ${NEW_RUN}
+git branch ${NEW_BRANCH}       # For gisaid/genbank_annotations.txt
+git checkout ${NEW_BRANCH}
 cd ../ncov
-git branch ${NEW_RUN}       # For defaults/colors lat_long.txt
-git checkout ${NEW_RUN}
-#git push origin ${NEW_RUN}
+git branch ${NEW_BRANCH}       # For defaults/colors lat_long.txt
+git checkout ${NEW_BRANCH}
 
 # Pull existing s3 datasets
-#cd ncov # 
-set +e
-set +u
+set +eu
 nextstrain remote download s3://nextstrain-ncov-private/metadata.tsv.gz /dev/stdout | gunzip > data/downloaded_gisaid.tsv
 nextstrain remote download s3://nextstrain-data/files/ncov/open/metadata.tsv.gz /dev/stdout | gunzip > data/metadata_genbank.tsv
-set -e
-set -u
+set -eu
 
 # Pull data from slack
 mkdir -p scripts/curate_metadata/inputs_new_sequences
 cp ${INDIR}/* scripts/curate_metadata/inputs_new_sequences/.
 
-exit  # Fix additional_data
 # This seems to take several minutes, add a timing command
 date
 time python scripts/curate_metadata/parse_additional_info.py --auto 
@@ -54,8 +45,8 @@ cat ../ncov-ingest/source-data/gisaid_annotations.tsv >> temp.txt
 cat temp.txt | grep -v "^$" > a.txt
 mv a.txt ../ncov-ingest/source-data/gisaid_annotations.tsv
 
-cp ${MERGE_LOC}/manualAnnotationRules.txt scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
-#cp ../merge_loc/temp.txt scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt
-# Another one that takes several minutes, might be due to size of metadata though
+cp ${LOC_CUR}/manualAnnotationRules.txt scripts/curate_metadata/config_curate_metadata/manualAnnotationRules.txt
+#cp ${LOC_CUR}/geoLocationRules.txt scripts/curate_metadata/config_curate_metadata/geoLocationRules.txt
+# This takes several minutes, might be due to size of metadata
 date
 python scripts/curate_metadata/curate_metadata.py
