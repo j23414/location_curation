@@ -2,7 +2,7 @@
 set -euv
 
 # === Variables to change each time
-export DATE=2022-08-29
+export DATE=2022-09-13
 export NEW_BRANCH="location_curation/${DATE}"
 export INDIR=~/Desktop/Ingest_Locations/Downloads/${DATE}
 export LOC_CUR=~/Desktop/Ingest_Locations/location_curation

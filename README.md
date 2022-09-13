@@ -202,14 +202,15 @@ Go back to "curate" rerun to check rules again.
 ## Commit
 
 ```
-DAY='2022-08-29'
+export DATE=2022-08-29 
+export NEW_BRANCH="location_curation/${DATE}" 
 cd ncov-ingest
-git commit -m "add: annotation updates up to ${DAY}" source-data/*
-git push origin ${NEW_RUN}
+git commit -m "add: annotation updates up to ${DATE}" source-data/*
+git push origin ${NEW_BRANCH}
 cd ../ncov
-git commit -m "add: annotation updates up to ${DAY}" defaults/*
-# git push --set-upstream origin ${NEW_RUN}
-git push origin ${NEW_RUN}
+git commit -m "add: annotation updates up to ${DATE}" defaults/*
+# git push --set-upstream origin ${NEW_BRANCH}
+git push origin ${NEW_BRANCH}
 ```
 
 ## PR
